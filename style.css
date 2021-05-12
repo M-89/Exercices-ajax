@@ -32,7 +32,7 @@ input[type="text"] {
 
 input[type="submit"] {
   padding: 0.8rem;
-  margin: 0.8rem;
+  margin: 0.8rem auto;
 }
 
 .divs-exercises {
