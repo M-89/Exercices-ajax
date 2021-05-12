@@ -57,23 +57,37 @@ function getUsers(names) {
   // Pour chaque user du tableau on fetch les données utilisateurs en passant le nom dans l'URL
 
   names.forEach(async name => {
-    let response = await fetch(`https://api.github.com/users/${name}`);
+    // Si la liste HTML est vide on fetch les données et on la remplit avec les infos des utilisateurs spécifiés
 
-    let json = await response.json(); // On parse la réponse en json
+    if (usersList.childNodes.length === 0) {
+      let response = await fetch(`https://api.github.com/users/${name}`);
 
-    // Si la requête n'aboutit pas, on affiche un message d'erreur et on n'affiche pas l'utilisateur dont la requête a posé problème
+      let json = await response.json(); // On parse la réponse en json
 
-    if (!response.ok) {
-      alert("Au moins un utilisateur n'a pu être trouvé.");
-    } else {
-      // Si la requête a aboutit, on envoie le json reçu vers la fonction displayUserInfo() pour formater les informations de l'utilisateur et les afficher
-      displayUserInfo(json);
+      // Si la requête n'aboutit pas, on affiche un message d'erreur et on n'affiche pas l'utilisateur dont la requête a posé problème
+
+      if (!response.ok) {
+        alert("Au moins un utilisateur n'a pu être trouvé.");
+      } else {
+        // Si la requête a aboutit, on envoie le json reçu vers la fonction displayUserInfo() pour formater les informations de l'utilisateur et les afficher
+        displayUserInfo(json);
+      }
     }
   });
 }
 
 async function displayUserInfo(json) {
-  usersList.innerHTML += `<li><p>${json.login}<p/><p>Créé le : ${json.created_at}<p/> Followers : ${json.followers}</li>`;
+  // On crée un template content (modèle de contenu) dans lequel on stocke le contenu HTML des infos de l'utilisateur
+
+  let temp = document.createElement("template");
+
+  temp.innerHTML = `<li><p>${json.login}<p/><p>Créé le : ${json.created_at}<p/> Followers : ${json.followers}</li>`;
+
+  let fragment = temp.content;
+
+  // On ajoute le fragment avec les infos à la liste
+
+  usersList.appendChild(fragment);
 }
 
 // Envoyer des données avec requête POST
