@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <main>
+      <h1>Exercices AJAX</h1>
+      <div id="container">
+        <div class="divs-exercises">
+          <h2>Aller chercher des données dans une API</h2>
+
+          <div>
+            <input
+              type="submit"
+              value="Quel temps fera-t-il demain à Paris ?"
+              id="submit-weather"
+            />
+          </div>
+          <div id="tomorrow-weather-result"></div>
+        </div>
+        <div class="divs-exercises">
+          <h2>Aller chercher des données dans une API 2</h2>
+
+          <label
+            >Saisissez des utilisateurs Github séparés par une virgule. Ex :
+            iliakan, remy, mark, m-89 : <input type="text" id="user-input"
+          /></label>
+          <input type="submit" value="Envoyer" id="submit-users" />
+
+          <ul id="users"></ul>
+        </div>
+        <div class="divs-exercises">
+          <h2>Envoyer des données via AJAX et les afficher</h2>
+
+          <form id="form">
+            <label
+              >Saisissez une valeur : <input type="text" id="value"
+            /></label>
+            <input type="submit" value="Envoyer" id="submit-post" />
+          </form>
+          <div id="result"></div>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
